@@ -176,6 +176,9 @@ class DomainInstanceBuilder {
         }
 
         GrailsDomainClass defDomain = getDomainArtefact(domainInstance.class) as GrailsDomainClass
+        if (!defDomain.propertyMap) {
+            defDomain.initializePersistentProperties()
+        }
         def domainProp = defDomain.propertyMap[propertyName]
 
         if (domainProp?.isManyToOne()) {
